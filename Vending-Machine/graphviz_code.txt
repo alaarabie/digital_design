@@ -1,0 +1,52 @@
+digraph finite_state_machine {
+    rankdir=rl;
+    size="50,5"
+
+
+    
+   // node [shape = circle,color=black];
+    
+    node [shape = circle]; reset;
+    node [shape = circle]; five;
+    node [shape = circle]; ten;
+    node [shape = circle]; fifteen;
+    node [shape = circle]; twenty;
+    node [shape = circle, label="twenty_five\n vent=1"]; twenty_five;
+
+    
+    
+    
+    reset->reset;
+    reset->five [ label = "c=5" ];
+    reset->ten [ label = "c=10" ];
+    reset->twenty_five [ label = "c=25" ];
+    
+    
+    five->five;    
+    five->ten [ label = "c=5" ];
+    five->fifteen [ label = "c=10" ];
+    five->twenty_five [ label = "c=25\nchange=5" ];
+
+    
+    ten->ten;
+    ten->fifteen [ label = "c=5" ];
+    ten->twenty [ label = "c=10" ];
+    ten->twenty_five [ label = "c=15" ];
+
+    fifteen->fifteen;
+    fifteen->twenty [ label = "c=5" ];
+    fifteen->twenty_five [ label = "c=10" ];
+    fifteen->twenty_five [ label = "c=25\nchange=15" ];
+
+    twenty->twenty;
+    twenty->twenty_five [ label = "c=5" ];
+    twenty->twenty_five [ label = "c=10\nchange=5" ];
+    twenty->twenty_five [ label = "c=25\nchange=20" ];
+    twenty_five->reset
+    
+    
+
+
+
+
+}
